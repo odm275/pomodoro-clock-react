@@ -28,15 +28,11 @@ class App extends Component {
       let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));      
       let seconds = Math.floor((distance % (1000 * 60)) / 1000);
       let time = minutes + ': ' + seconds;
-      console.log(time);
-      this.setState({
-        time: time
-      });
-      console.log(this.time);
+      this.setState({time: time});
       if (distance < 0) {
         clearInterval(x);
     }
-    },this.second);
+    },1000);
   }
   plusTime(time){
     
@@ -49,6 +45,7 @@ class App extends Component {
     const times = [this.state.session
                   ,this.state.shortBreak
                   ,this.state.longBreak];
+    console.log(this.state.time);
     return (
 
       <div className="App">
@@ -56,7 +53,7 @@ class App extends Component {
         {times.map(time=>{
           return(<h1>{time}</h1>)
         })}
-        <h1>{this.time ? this.time:'lol'}</h1>
+        <h1>{this.state.time ? this.state.time: '...'}</h1>
         <button onClick={this.start}>Start</button>
         <button>+</button>
         <button>-</button>
